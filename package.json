@@ -55,6 +55,10 @@
     "vitest": "^4.0.18"
   },
   "packageManager": "pnpm@10.28.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepgram/deepgram-kapa-chat"
+  },
   "license": "MIT",
   "pnpm": {
     "onlyBuiltDependencies": [
