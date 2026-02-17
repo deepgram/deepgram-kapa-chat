@@ -14,27 +14,31 @@ import { observeDom } from './dom-observer';
 import './styles.css';
 
 export function orchestrate(config: ChatConfig): void {
-  // Mount inline chat if container is present
-  mountInlineChat(config);
+  // Mount inline chat if container ID is configured
+  if (config.containerId) {
+    mountInlineChat(config);
+  }
 
-  // Store config for sidebar — mounts lazily on first open
-  prepareSidebar(config);
-
-  // Bind the Ask AI button
-  bindButton(config);
+  // Store config for sidebar — mounts lazily on first open (needs button to toggle)
+  if (config.buttonId) {
+    prepareSidebar(config);
+    bindButton(config);
+  }
 
   // SPA navigation — re-bind button and re-mount inline chat when DOM changes
   observeDom(() => {
-    // Re-bind button if it was lost
-    if (!isButtonBound() || !document.getElementById(config.buttonId)) {
-      resetButton();
-      bindButton(config);
+    if (config.buttonId) {
+      if (!isButtonBound() || !document.getElementById(config.buttonId)) {
+        resetButton();
+        bindButton(config);
+      }
     }
 
-    // Re-mount inline chat if container reappeared
-    const container = document.getElementById(config.containerId);
-    if (container && !container.dataset.dgChatInit) {
-      mountInlineChat(config);
+    if (config.containerId) {
+      const container = document.getElementById(config.containerId);
+      if (container && !container.dataset.dgChatInit) {
+        mountInlineChat(config);
+      }
     }
   });
 }

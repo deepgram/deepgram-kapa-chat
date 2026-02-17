@@ -1,21 +1,43 @@
 /*
- * @deepgram/docs-chat — structural styles only.
- * Theming comes from @deepgram/styles (dg-* classes + --color-dg-* vars).
- * These dg-chat-* classes handle layout, animations, and chat-specific structure.
- *
- * The layer() wrapper prevents @deepgram/styles' Tailwind preflight and utility
- * classes (.hidden, heading resets, [hidden]!important, etc.) from overriding
- * host-page CSS. Normal host styles automatically win over layered styles.
+ * @deepgram/docs-chat — self-contained styles.
+ * Includes only the @deepgram/styles theme vars and component classes
+ * that the widget actually uses. No Tailwind, no global resets.
  */
 
-@import '@deepgram/styles/dist/deepgram.css' layer(dg-vendor);
+/* ── Theme variables ────────────────────────────────────────── */
 
-/*
- * Re-apply essential Tailwind preflight within widget containers only.
- * The layer() wrapper above prevents @deepgram/styles' global resets from
- * reaching host-page elements, but our .dg-* components still depend on
- * box-sizing: border-box and zeroed margins/padding to render correctly.
- */
+:root, :host {
+  --spacing: 0.25rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --leading-snug: 1.375;
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --color-dg-primary: var(--dg-primary, #13ef95);
+  --color-dg-secondary: var(--dg-secondary, #149afb);
+  --color-dg-background: light-dark(#ffffff, #0b0b0c);
+  --color-dg-charcoal: light-dark(#f3f4f6, #1a1a1f);
+  --color-dg-solid: light-dark(#000000, #ffffff);
+  --color-dg-on-solid: light-dark(#ffffff, #000000);
+  --color-dg-border: light-dark(#d1d5db, #2c2c33);
+  --color-dg-pebble: light-dark(#9ca3af, #4e4e52);
+  --color-dg-slate: light-dark(#6b7280, #949498);
+  --color-dg-text: light-dark(#111827, #fbfbff);
+  --color-dg-fog: light-dark(#1f2937, #edede2);
+  --color-dg-muted: light-dark(#6b7280, #949498);
+  --color-dg-danger: light-dark(#b91c1c, #f04438);
+
+  --font-dg-sans: "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* ── Preflight (scoped to widget containers only) ───────────── */
+
 .dg-chat-chat *,
 .dg-chat-chat *::before,
 .dg-chat-chat *::after,
@@ -34,12 +56,370 @@
   text-decoration: inherit;
 }
 
+/* ── dg-btn (from @deepgram/styles) ─────────────────────────── */
+
+.dg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: calc(var(--spacing) * 5);
+  padding-block: calc(var(--spacing) * 1.5);
+  line-height: 2;
+  border-radius: 0.25rem;
+  font-family: var(--font-dg-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  text-transform: capitalize;
+  width: fit-content;
+  cursor: pointer;
+  outline-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+  gap: 0.5rem;
+  height: 3rem;
+}
+
+.dg-btn:disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}
+
+.dg-btn i, .dg-btn svg {
+  flex-shrink: 0;
+}
+
+.dg-btn--sm {
+  padding-inline: calc(var(--spacing) * 5);
+  padding-block: calc(var(--spacing) * 2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  height: 2.25rem;
+}
+
+.dg-btn--secondary {
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: var(--color-dg-solid);
+  color: var(--color-dg-on-solid);
+}
+
+.dg-btn--secondary:hover {
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--color-dg-solid);
+  background-color: var(--color-dg-on-solid);
+  color: var(--color-dg-solid);
+}
+
+.dg-btn--ghost {
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--color-dg-slate);
+  background-color: var(--color-dg-on-solid);
+  color: var(--color-dg-solid);
+}
+
+.dg-btn--ghost:hover {
+  border-color: transparent;
+  background-color: var(--color-dg-solid);
+  color: var(--color-dg-on-solid);
+  box-shadow: color-mix(in srgb, light-dark(#9ca3af, #4e4e52) 5%, transparent) 0 0.0625rem 0.125rem;
+}
+
+.dg-btn--icon-only {
+  width: calc(var(--spacing) * 12);
+  height: calc(var(--spacing) * 12);
+  padding-inline: calc(var(--spacing) * 2);
+}
+
+.dg-btn--icon-only.dg-btn--sm {
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+}
+
+/* ── dg-input (from @deepgram/styles) ───────────────────────── */
+
+.dg-input {
+  width: 100%;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--color-dg-pebble);
+  padding-inline: calc(var(--spacing) * 4);
+  padding-block: calc(var(--spacing) * 3);
+  background-color: var(--color-dg-charcoal);
+  font-family: var(--font-dg-sans);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--color-dg-text);
+  transition: all 300ms var(--default-transition-timing-function);
+  outline-style: none;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.05);
+  height: 2.75rem;
+}
+
+.dg-input:focus {
+  border-color: var(--color-dg-primary);
+  box-shadow: 0 0 0 0.0625rem var(--color-dg-primary);
+}
+
+.dg-input:disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}
+
+.dg-input::placeholder {
+  color: var(--color-dg-muted);
+}
+
+/* ── dg-prose (markdown content styling) ─────────────────────── */
+
+.dg-prose {
+  margin-bottom: calc(var(--spacing) * 3);
+  width: 100%;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-dg-fog);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .dg-prose {
+    margin-bottom: calc(var(--spacing) * 4);
+    max-width: 65ch;
+    font-size: var(--text-base);
+  }
+}
+
+/* Paragraphs */
+.dg-prose p {
+  margin-bottom: 0.75em;
+}
+
+.dg-prose > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.dg-prose h1,
+.dg-prose h2,
+.dg-prose h3,
+.dg-prose h4 {
+  color: var(--color-dg-text);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.dg-prose > h1:first-child,
+.dg-prose > h2:first-child,
+.dg-prose > h3:first-child,
+.dg-prose > h4:first-child {
+  margin-top: 0;
+}
+
+.dg-prose h1 { font-size: 1.5em; }
+.dg-prose h2 { font-size: 1.25em; }
+.dg-prose h3 { font-size: 1.125em; }
+.dg-prose h4 { font-size: 1em; }
+
+/* Links */
+.dg-prose a {
+  color: var(--color-dg-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dg-prose a:hover {
+  opacity: 0.8;
+}
+
+/* Bold / italic */
+.dg-prose strong {
+  color: var(--color-dg-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Inline code */
+.dg-prose code {
+  font-family: "FiraMono", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+  font-size: 0.8125em;
+  background: var(--color-dg-charcoal);
+  border: 1px solid var(--color-dg-border);
+  border-radius: 0.25rem;
+  padding: 0.15em 0.35em;
+  box-shadow: none;
+}
+
+/* Code blocks */
+.dg-prose pre {
+  background: light-dark(#fafafa, #000000);
+  border: 1px solid var(--color-dg-border);
+  border-radius: 0.75rem;
+  padding: 1em 1.25em;
+  margin-bottom: 0.75em;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dg-prose pre code {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  font-size: 0.8125em;
+  line-height: 1.75;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+  color: light-dark(#24292e, #eeffff);
+}
+
+/* ── Syntax highlighting (scoped to .dg-prose) ──────────────── */
+
+.dg-prose .hljs-keyword,
+.dg-prose .hljs-selector-tag,
+.dg-prose .hljs-built_in,
+.dg-prose .hljs-type {
+  color: light-dark(#d73a49, #c792ea);
+}
+
+.dg-prose .hljs-string,
+.dg-prose .hljs-attr {
+  color: light-dark(#032f62, #c3e88d);
+}
+
+.dg-prose .hljs-number,
+.dg-prose .hljs-literal {
+  color: light-dark(#005cc5, #f78c6c);
+}
+
+.dg-prose .hljs-comment,
+.dg-prose .hljs-doctag {
+  color: light-dark(#6a737d, #546e7a);
+  font-style: italic;
+}
+
+.dg-prose .hljs-function,
+.dg-prose .hljs-title {
+  color: light-dark(#6f42c1, #82aaff);
+}
+
+.dg-prose .hljs-variable,
+.dg-prose .hljs-params {
+  color: light-dark(#e36209, #eeffff);
+}
+
+.dg-prose .hljs-meta {
+  color: light-dark(#735c0f, #ffcb6b);
+}
+
+.dg-prose .hljs-attribute {
+  color: light-dark(#22863a, #c792ea);
+}
+
+.dg-prose .hljs-name,
+.dg-prose .hljs-tag {
+  color: light-dark(#22863a, #f07178);
+}
+
+.dg-prose .hljs-subst {
+  color: light-dark(#24292e, #eeffff);
+}
+
+/* Lists */
+.dg-prose ul,
+.dg-prose ol {
+  margin-bottom: 0.75em;
+  padding-left: 1.5em;
+}
+
+.dg-prose ul { list-style-type: disc; }
+.dg-prose ol { list-style-type: decimal; }
+
+.dg-prose li {
+  margin-bottom: 0.25em;
+}
+
+.dg-prose li > ul,
+.dg-prose li > ol {
+  margin-top: 0.25em;
+  margin-bottom: 0;
+}
+
+/* Blockquotes */
+.dg-prose blockquote {
+  border-left: 3px solid var(--color-dg-primary);
+  padding-left: 1em;
+  margin-bottom: 0.75em;
+  color: var(--color-dg-slate);
+  font-style: italic;
+}
+
+/* Horizontal rules */
+.dg-prose hr {
+  border: none;
+  border-top: 1px solid var(--color-dg-border);
+  margin: 1.25em 0;
+}
+
+/* Tables */
+.dg-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.75em;
+  font-size: 0.875em;
+}
+
+.dg-prose th,
+.dg-prose td {
+  border: 1px solid var(--color-dg-border);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.dg-prose th {
+  background: var(--color-dg-charcoal);
+  color: var(--color-dg-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ── dg-status (from @deepgram/styles) ──────────────────────── */
+
+.dg-status {
+  width: 100%;
+  padding-block: calc(var(--spacing) * 1);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-dg-fog);
+  font-style: italic;
+  margin-block: calc(var(--spacing) * 2);
+}
+
+@media (min-width: 640px) {
+  .dg-status {
+    margin-block: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 2);
+    font-size: var(--text-base);
+  }
+}
+
+.dg-status--error {
+  color: var(--color-dg-danger);
+}
+
 /* ── Chat layout ─────────────────────────────────────────────── */
 
 .dg-chat-chat {
   display: flex;
   flex-direction: column;
   height: 100%;
+  max-height: calc(100dvh - 12rem);
   font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--color-dg-muted);
@@ -90,6 +470,21 @@
 
 .dg-chat-source-link {
   text-decoration: none;
+  white-space: normal;
+  text-align: left;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--text-xs);
+  padding-inline: calc(var(--spacing) * 3);
+  padding-block: calc(var(--spacing) * 1.5);
+  line-height: 1.4;
+}
+
+.dg-chat-source-link span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .dg-chat-source-type {
@@ -136,6 +531,11 @@
 
 .dg-chat-input {
   flex: 1;
+}
+
+.dg-chat-input-row .dg-btn--icon-only {
+  width: 2.75rem;
+  height: 2.75rem;
 }
 
 .dg-chat-input:focus {
@@ -308,4 +708,5 @@
   flex: 1;
   padding: 0 1.25rem 1rem;
   min-height: 0;
+  max-height: none;
 }

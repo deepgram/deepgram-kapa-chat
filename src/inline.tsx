@@ -9,6 +9,7 @@ import { ChatApp } from './chat-app';
 let root: Root | null = null;
 
 export function mountInlineChat(config: ChatConfig): void {
+  if (!config.containerId) return;
   const container = document.getElementById(config.containerId);
   if (!container || container.dataset.dgChatInit) return;
   container.dataset.dgChatInit = '1';

@@ -5,8 +5,44 @@
 import { useState, useEffect, useRef, Fragment } from 'react';
 import { useChat } from '@kapaai/react-sdk';
 import { marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js/lib/core';
+import python from 'highlight.js/lib/languages/python';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
+import bash from 'highlight.js/lib/languages/bash';
+import json from 'highlight.js/lib/languages/json';
+import xml from 'highlight.js/lib/languages/xml';
+import go from 'highlight.js/lib/languages/go';
+import csharp from 'highlight.js/lib/languages/csharp';
 import { StopIcon, PaperPlaneIcon, CommentsIcon, ThumbsUpIcon, ThumbsDownIcon } from './icons';
 
+hljs.registerLanguage('python', python);
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('js', javascript);
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('ts', typescript);
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('sh', bash);
+hljs.registerLanguage('shell', bash);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('html', xml);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('go', go);
+hljs.registerLanguage('csharp', csharp);
+hljs.registerLanguage('cs', csharp);
+
+marked.use(
+  markedHighlight({
+    langPrefix: 'hljs language-',
+    highlight(code, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        return hljs.highlight(code, { language: lang }).value;
+      }
+      return hljs.highlightAuto(code).value;
+    },
+  }),
+);
 marked.setOptions({ breaks: true, gfm: true });
 
 const EXAMPLES = [
@@ -92,7 +128,7 @@ export function ChatApp() {
         </div>
         {!empty && (
           <div className="dg-chat-input-actions">
-            <button type="button" className="dg-btn dg-btn--ghost" onClick={onReset}>
+            <button type="button" className="dg-btn dg-btn--sm dg-btn--ghost" onClick={onReset}>
               New conversation
             </button>
           </div>
@@ -161,7 +197,7 @@ export function ChatApp() {
                       {qa.sources.map((s, si) => (
                         <a
                           key={si}
-                          className="dg-btn dg-btn--ghost dg-chat-source-link"
+                          className="dg-btn dg-btn--sm dg-btn--ghost dg-chat-source-link"
                           href={s.source_url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -179,14 +215,14 @@ export function ChatApp() {
                   <div className="dg-chat-feedback">
                     <span className="dg-chat-feedback-label">Was this helpful?</span>
                     <button
-                      className={`dg-btn dg-btn--ghost dg-btn--icon-only dg-chat-feedback-btn${qaVote === 'upvote' ? ' active' : ''}`}
+                      className={`dg-btn dg-btn--sm dg-btn--ghost dg-btn--icon-only dg-chat-feedback-btn${qaVote === 'upvote' ? ' active' : ''}`}
                       onClick={() => onVote(qa.id!, 'upvote')}
                       title="Helpful"
                     >
                       <ThumbsUpIcon />
                     </button>
                     <button
-                      className={`dg-btn dg-btn--ghost dg-btn--icon-only dg-chat-feedback-btn${qaVote === 'downvote' ? ' active' : ''}`}
+                      className={`dg-btn dg-btn--sm dg-btn--ghost dg-btn--icon-only dg-chat-feedback-btn${qaVote === 'downvote' ? ' active' : ''}`}
                       onClick={() => onVote(qa.id!, 'downvote')}
                       title="Not helpful"
                     >
