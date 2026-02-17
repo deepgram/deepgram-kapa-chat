@@ -6,7 +6,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { KapaProvider } from '@kapaai/react-sdk';
 import type { ChatConfig } from './types';
 import { ChatApp } from './chat-app';
-
+import { XMarkIcon } from './icons';
 
 let panel: HTMLElement | null = null;
 let root: Root | null = null;
@@ -39,7 +39,7 @@ function SidebarWrapper() {
       <div className="dg-chat-sidebar-header">
         <span className="dg-chat-sidebar-title">Ask Deepgram</span>
         <button className="dg-btn dg-btn--ghost dg-btn--icon-only" onClick={closeSidebar} title="Close">
-          <i className="fa-solid fa-xmark" />
+          <XMarkIcon />
         </button>
       </div>
       <ChatApp />

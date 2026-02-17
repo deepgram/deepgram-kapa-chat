@@ -2,11 +2,37 @@
  * @deepgram/docs-chat — structural styles only.
  * Theming comes from @deepgram/styles (dg-* classes + --color-dg-* vars).
  * These dg-chat-* classes handle layout, animations, and chat-specific structure.
+ *
+ * The layer() wrapper prevents @deepgram/styles' Tailwind preflight and utility
+ * classes (.hidden, heading resets, [hidden]!important, etc.) from overriding
+ * host-page CSS. Normal host styles automatically win over layered styles.
  */
 
-@import '@deepgram/styles/dist/deepgram.css';
-@import '@fortawesome/fontawesome-free/css/fontawesome.css';
-@import '@fortawesome/fontawesome-free/css/solid.css';
+@import '@deepgram/styles/dist/deepgram.css' layer(dg-vendor);
+
+/*
+ * Re-apply essential Tailwind preflight within widget containers only.
+ * The layer() wrapper above prevents @deepgram/styles' global resets from
+ * reaching host-page elements, but our .dg-* components still depend on
+ * box-sizing: border-box and zeroed margins/padding to render correctly.
+ */
+.dg-chat-chat *,
+.dg-chat-chat *::before,
+.dg-chat-chat *::after,
+.dg-chat-sidebar-content *,
+.dg-chat-sidebar-content *::before,
+.dg-chat-sidebar-content *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+.dg-chat-chat a,
+.dg-chat-sidebar-content a {
+  color: inherit;
+  text-decoration: inherit;
+}
 
 /* ── Chat layout ─────────────────────────────────────────────── */
 

@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@deepgram/styles": "^0.2.15",
-    "@fortawesome/fontawesome-free": "^7.2.0",
     "@kapaai/react-sdk": "^0.9.1",
     "marked": "^12.0.0",
     "react": "^19.0.0",

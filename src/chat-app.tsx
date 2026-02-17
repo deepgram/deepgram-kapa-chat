@@ -5,7 +5,7 @@
 import { useState, useEffect, useRef, Fragment } from 'react';
 import { useChat } from '@kapaai/react-sdk';
 import { marked } from 'marked';
-
+import { StopIcon, PaperPlaneIcon, CommentsIcon, ThumbsUpIcon, ThumbsDownIcon } from './icons';
 
 marked.setOptions({ breaks: true, gfm: true });
 
@@ -82,11 +82,11 @@ export function ChatApp() {
           />
           {busy ? (
             <button type="button" className="dg-btn dg-btn--ghost dg-btn--icon-only" onClick={stopGeneration} title="Stop generating">
-              <i className="fa-solid fa-stop" />
+              <StopIcon />
             </button>
           ) : (
             <button type="submit" className="dg-btn dg-btn--secondary dg-btn--icon-only" disabled={!input.trim()} title="Send">
-              <i className="fa-solid fa-paper-plane" />
+              <PaperPlaneIcon />
             </button>
           )}
         </div>
@@ -107,7 +107,7 @@ export function ChatApp() {
         <div className="dg-chat-messages" ref={msgsRef}>
           <div className="dg-chat-empty-state">
             <div className="dg-chat-empty-icon">
-              <i className="fa-solid fa-comments fa-3x" />
+              <CommentsIcon style={{ fontSize: '3em' }} />
             </div>
             <h2 className="dg-chat-empty-title">Ask Deepgram AI</h2>
             <p className="dg-chat-empty-subtitle">
@@ -183,14 +183,14 @@ export function ChatApp() {
                       onClick={() => onVote(qa.id!, 'upvote')}
                       title="Helpful"
                     >
-                      <i className="fa-solid fa-thumbs-up" />
+                      <ThumbsUpIcon />
                     </button>
                     <button
                       className={`dg-btn dg-btn--ghost dg-btn--icon-only dg-chat-feedback-btn${qaVote === 'downvote' ? ' active' : ''}`}
                       onClick={() => onVote(qa.id!, 'downvote')}
                       title="Not helpful"
                     >
-                      <i className="fa-solid fa-thumbs-down" />
+                      <ThumbsDownIcon />
                     </button>
                   </div>
                 )}
