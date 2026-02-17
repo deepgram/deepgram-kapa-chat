@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.5...docs-chat-v0.1.6) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** add repository url for npm provenance verification ([a13bdcf](https://github.com/deepgram/deepgram-kapa-chat/commit/a13bdcf745c88569dc325f3982e9f7fb279519ed))
+
 ## [0.1.5](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.4...docs-chat-v0.1.5) (2026-02-17)
 
 
