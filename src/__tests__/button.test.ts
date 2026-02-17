@@ -76,12 +76,49 @@ describe('bindButton', () => {
     expect(toggleSidebar).toHaveBeenCalledTimes(1);
   });
 
-  it('does not bind twice', () => {
+  it('does not bind twice to the same element', () => {
     bindButton(CONFIG);
     bindButton(CONFIG);
 
     button.click();
     expect(toggleSidebar).toHaveBeenCalledTimes(1);
+  });
+
+  it('strips href from the element', () => {
+    const link = document.createElement('a');
+    link.id = CONFIG.buttonId;
+    link.setAttribute('href', '/some-page');
+    // Replace the button with the link
+    button.remove();
+    document.body.appendChild(link);
+    resetButton();
+
+    bindButton(CONFIG);
+    expect(link.hasAttribute('href')).toBe(false);
+  });
+
+  it('re-binds when element is replaced in the DOM', () => {
+    bindButton(CONFIG);
+
+    // Simulate SPA replacing the element
+    button.remove();
+    resetButton();
+    const newButton = document.createElement('button');
+    newButton.id = CONFIG.buttonId;
+    document.body.appendChild(newButton);
+
+    bindButton(CONFIG);
+    newButton.click();
+
+    expect(toggleSidebar).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports unbound when element is removed from DOM', () => {
+    bindButton(CONFIG);
+    expect(isButtonBound()).toBe(true);
+
+    button.remove();
+    expect(isButtonBound()).toBe(false);
   });
 });
 

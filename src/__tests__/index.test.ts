@@ -4,7 +4,7 @@ vi.mock('../orchestrator', () => ({
   orchestrate: vi.fn(),
 }));
 
-import { Chat } from '../index';
+import { init } from '../index';
 import { orchestrate } from '../orchestrator';
 
 const CONFIG = {
@@ -13,21 +13,19 @@ const CONFIG = {
   containerId: 'chat-container',
 };
 
-describe('Chat.init', () => {
+describe('init', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('calls orchestrate when document is ready', () => {
     // jsdom sets readyState to 'complete' by default
-    Chat.init(CONFIG);
+    init(CONFIG);
     expect(orchestrate).toHaveBeenCalledWith(CONFIG);
   });
 
-  it('exports ChatConfig type', async () => {
-    // Verify the type export exists by importing it
+  it('exports init function', async () => {
     const mod = await import('../index');
-    expect(mod.Chat).toBeDefined();
-    expect(mod.Chat.init).toBeInstanceOf(Function);
+    expect(mod.init).toBeInstanceOf(Function);
   });
 });

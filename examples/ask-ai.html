@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ask AI — Deepgram</title>
-  <link rel="stylesheet" href="https://unpkg.com/@deepgram/styles@0.2.15/dist/deepgram.css" integrity="sha384-0Paey9+5VkLIwPng3yqTefCQHOylt0VS15BzfSECxSg06MMKdl13Zq0gKImj8dVo" crossorigin="anonymous" />
   <link rel="stylesheet" href="/examples/shared.css" />
   <style>
     #chat-container {
@@ -49,9 +48,9 @@
     })();
   </script>
   <script type="module">
-    import { Chat } from '/dist/deepgram-chat.es.js';
+    import { init } from '/dist/deepgram-docs-chat.es.js';
 
-    Chat.init({
+    init({
       integrationId: 'f79261f3-9f70-489c-af54-74ba17fd3855',
       buttonId: 'ask-ai-btn',
       containerId: 'chat-container',

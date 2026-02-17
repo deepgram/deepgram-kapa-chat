@@ -28,7 +28,7 @@ If applicable, add screenshots to help explain the problem.
 
 - **Browser:** (e.g., Chrome 120, Safari 17)
 - **OS:** (e.g., macOS 14, Windows 11)
-- **@deepgram/chat version:** (e.g., 0.1.0)
+- **@deepgram/docs-chat version:** (e.g., 0.1.0)
 - **Integration method:** (ESM / UMD / script tag)
 
 ## Console errors

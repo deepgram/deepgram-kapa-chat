@@ -1,4 +1,4 @@
-# @deepgram/chat
+# @deepgram/docs-chat
 
 Standalone AI chat widget for Deepgram documentation sites. Drop it into any page to give users an instant "Ask AI" experience powered by [Kapa](https://kapa.ai).
 
@@ -13,13 +13,13 @@ Both modes are SPA-aware and automatically re-bind when the DOM changes.
 
 ```bash
 # pnpm
-pnpm add @deepgram/chat
+pnpm add @deepgram/docs-chat
 
 # npm
-npm install @deepgram/chat
+npm install @deepgram/docs-chat
 
 # yarn
-yarn add @deepgram/chat
+yarn add @deepgram/docs-chat
 ```
 
 ## Quick start
@@ -27,9 +27,9 @@ yarn add @deepgram/chat
 ### ES module (bundler)
 
 ```ts
-import { Chat } from '@deepgram/chat';
+import { init } from '@deepgram/docs-chat';
 
-Chat.init({
+init({
   integrationId: '<your-kapa-integration-id>',
   buttonId: 'ask-ai-btn',
   containerId: 'chat-container',
@@ -39,9 +39,9 @@ Chat.init({
 ### UMD (script tag)
 
 ```html
-<script src="https://unpkg.com/@deepgram/chat"></script>
+<script src="https://unpkg.com/@deepgram/docs-chat"></script>
 <script>
-  DeepgramChat.Chat.init({
+  DeepgramDocsChat.init({
     integrationId: '<your-kapa-integration-id>',
     buttonId: 'ask-ai-btn',
     containerId: 'chat-container',
@@ -60,7 +60,7 @@ Chat.init({
 
 ## Configuration
 
-`Chat.init(config)` accepts a `ChatConfig` object:
+`init(config)` accepts a `ChatConfig` object:
 
 | Property | Type | Description |
 |---|---|---|
@@ -70,13 +70,9 @@ Chat.init({
 
 ## Theming
 
-The widget uses [`@deepgram/styles`](https://www.npmjs.com/package/@deepgram/styles) CSS custom properties for colors and typography. Include the Deepgram stylesheet to get automatic light/dark mode support:
+[`@deepgram/styles`](https://www.npmjs.com/package/@deepgram/styles) is bundled into the widget — no extra stylesheet needed. Colors and typography are applied automatically via CSS custom properties.
 
-```html
-<link rel="stylesheet" href="https://unpkg.com/@deepgram/styles/dist/deepgram.css" />
-```
-
-The widget respects `color-scheme` on the `<html>` element, so toggling between `light` and `dark` works out of the box.
+The widget respects `color-scheme` on the `<html>` element, so toggling between `light` and `dark` works out of the box. To override colors, set `--color-dg-*` custom properties on your page.
 
 ## Development
 
@@ -103,7 +99,7 @@ The `examples/` directory contains two demo pages:
 
 ```
 src/
-  index.ts          Entry point — exports Chat.init()
+  index.ts          Entry point — exports init()
   types.ts          ChatConfig interface
   orchestrator.ts   Init flow that wires all modules
   chat-app.tsx      React chat UI component

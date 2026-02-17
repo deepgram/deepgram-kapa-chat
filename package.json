@@ -1,16 +1,16 @@
 {
-  "name": "@deepgram/chat",
+  "name": "@deepgram/docs-chat",
   "version": "0.1.0",
   "description": "Standalone AI chat widget for Deepgram docs",
   "type": "module",
-  "main": "./dist/deepgram-chat.umd.cjs",
-  "module": "./dist/deepgram-chat.es.js",
+  "main": "./dist/deepgram-docs-chat.umd.cjs",
+  "module": "./dist/deepgram-docs-chat.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/deepgram-chat.es.js",
-      "require": "./dist/deepgram-chat.umd.cjs"
+      "import": "./dist/deepgram-docs-chat.es.js",
+      "require": "./dist/deepgram-docs-chat.umd.cjs"
     }
   },
   "files": [
@@ -29,6 +29,7 @@
     "check": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
+    "@deepgram/styles": "^0.2.15",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "@kapaai/react-sdk": "^0.9.1",
     "marked": "^12.0.0",

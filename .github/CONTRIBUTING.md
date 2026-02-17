@@ -1,4 +1,4 @@
-# Contributing to @deepgram/chat
+# Contributing to @deepgram/docs-chat
 
 Thank you for considering contributing! Every contribution helps make the Deepgram developer experience better.
 

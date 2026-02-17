@@ -1,9 +1,10 @@
 /*
- * @deepgram/chat — structural styles only.
+ * @deepgram/docs-chat — structural styles only.
  * Theming comes from @deepgram/styles (dg-* classes + --color-dg-* vars).
  * These dg-chat-* classes handle layout, animations, and chat-specific structure.
  */
 
+@import '@deepgram/styles/dist/deepgram.css';
 @import '@fortawesome/fontawesome-free/css/fontawesome.css';
 @import '@fortawesome/fontawesome-free/css/solid.css';
 

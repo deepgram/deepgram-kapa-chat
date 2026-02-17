@@ -13,9 +13,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
-      name: 'DeepgramChat',
+      name: 'DeepgramDocsChat',
       formats: ['es', 'umd'],
-      fileName: (format) => `deepgram-chat.${format === 'es' ? 'es.js' : 'umd.cjs'}`,
+      fileName: (format) => `deepgram-docs-chat.${format === 'es' ? 'es.js' : 'umd.cjs'}`,
     },
     rollupOptions: {
       external: [],
