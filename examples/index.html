@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docs — Deepgram</title>
+  <link rel="stylesheet" href="https://unpkg.com/@deepgram/styles@0.2.15/dist/deepgram.css" integrity="sha384-0Paey9+5VkLIwPng3yqTefCQHOylt0VS15BzfSECxSg06MMKdl13Zq0gKImj8dVo" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/examples/shared.css" />
+</head>
+<body class="bg-dg-background text-dg-text font-dg-sans">
+  <nav class="site-nav">
+    <a href="/examples/index.html" class="text-dg-text font-bold no-underline">Deepgram Docs</a>
+    <div class="spacer"></div>
+    <a href="/examples/index.html" class="dg-btn dg-btn--ghost dg-btn--sm active">Docs</a>
+    <a href="/examples/ask-ai.html" class="dg-btn dg-btn--ghost dg-btn--sm">Ask AI</a>
+    <button id="ask-ai-btn" class="dg-btn dg-btn--primary dg-btn--sm">Ask AI</button>
+    <button id="theme-btn" class="dg-btn dg-btn--ghost dg-btn--sm"></button>
+  </nav>
+
+  <div style="max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem;">
+    <h1 class="text-dg-text font-semibold text-2xl mb-4">Documentation</h1>
+    <p class="text-dg-muted leading-relaxed mb-4">
+      This page has no inline chat container. Clicking the "Ask AI" button
+      in the nav will open the sidebar chat panel.
+    </p>
+    <p class="text-dg-muted leading-relaxed">
+      Navigate to the <a href="/examples/ask-ai.html" class="text-dg-primary">Ask AI</a> page to see the
+      inline chat experience — the same button will focus the chat input
+      instead of opening the sidebar.
+    </p>
+  </div>
+
+  <script>
+    (function() {
+      const modes = ['system', 'light', 'dark'];
+      const labels = { system: 'System', light: 'Light', dark: 'Dark' };
+      let mode = localStorage.getItem('theme') || 'system';
+      function apply() {
+        if (mode === 'system') {
+          document.documentElement.style.removeProperty('color-scheme');
+        } else {
+          document.documentElement.style.colorScheme = mode;
+        }
+        document.getElementById('theme-btn').textContent = labels[mode];
+      }
+      document.getElementById('theme-btn').addEventListener('click', function() {
+        mode = modes[(modes.indexOf(mode) + 1) % modes.length];
+        localStorage.setItem('theme', mode);
+        apply();
+      });
+      apply();
+    })();
+  </script>
+  <script type="module">
+    import { Chat } from '/dist/deepgram-chat.es.js';
+
+    Chat.init({
+      integrationId: 'f79261f3-9f70-489c-af54-74ba17fd3855',
+      buttonId: 'ask-ai-btn',
+      containerId: 'chat-container',
+    });
+  </script>
+</body>
+</html>
