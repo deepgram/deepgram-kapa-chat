@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.4...docs-chat-v0.1.5) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** use node 24 for npm OIDC trusted publishing ([1e11a8a](https://github.com/deepgram/deepgram-kapa-chat/commit/1e11a8adbfd5a449c8254ec97bdd3dd91d9f1772))
+
 ## [0.1.4](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.3...docs-chat-v0.1.4) (2026-02-17)
 
 
