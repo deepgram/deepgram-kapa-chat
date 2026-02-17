@@ -6,6 +6,16 @@
 ### Bug Fixes
 
 * **ci:** remove registry-url to allow pure OIDC publish, reset to 0.1.2 ([2d9a5f7](https://github.com/deepgram/deepgram-kapa-chat/commit/2d9a5f7d553d8c8e795c1e39c6d6c81d77122202))
+* **ci:** use npm publish with OIDC trusted publishing ([6698888](https://github.com/deepgram/deepgram-kapa-chat/commit/6698888cf11ab2e5d9b3fbc1ea6765861e044932))
+* **ci:** use OIDC provenance for npm publish ([b5dd69e](https://github.com/deepgram/deepgram-kapa-chat/commit/b5dd69e863c8f12908a62c008fe3e958ceaf17e7))
+* **release:** reset version to 0.1.2 to retrigger 0.1.3 release ([a6908f8](https://github.com/deepgram/deepgram-kapa-chat/commit/a6908f8b69133eb54910eebbf221320a76c9c727))
+
+## [0.1.3](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.2...docs-chat-v0.1.3) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** remove registry-url to allow pure OIDC publish, reset to 0.1.2 ([2d9a5f7](https://github.com/deepgram/deepgram-kapa-chat/commit/2d9a5f7d553d8c8e795c1e39c6d6c81d77122202))
 * **ci:** use OIDC provenance for npm publish ([b5dd69e](https://github.com/deepgram/deepgram-kapa-chat/commit/b5dd69e863c8f12908a62c008fe3e958ceaf17e7))
 * **release:** reset version to 0.1.2 to retrigger 0.1.3 release ([a6908f8](https://github.com/deepgram/deepgram-kapa-chat/commit/a6908f8b69133eb54910eebbf221320a76c9c727))
 
