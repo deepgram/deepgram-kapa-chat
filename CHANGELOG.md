@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.3...docs-chat-v0.1.4) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** remove registry-url to fix OIDC trusted publishing ([3dcd402](https://github.com/deepgram/deepgram-kapa-chat/commit/3dcd402d224cfe03f59d83292971497a113ffd53))
+
 ## [0.1.3](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.2...docs-chat-v0.1.3) (2026-02-17)
 
 
