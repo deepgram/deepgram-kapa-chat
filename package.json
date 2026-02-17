@@ -1,6 +1,6 @@
 {
   "name": "@deepgram/docs-chat",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Standalone AI chat widget for Deepgram docs",
   "type": "module",
   "main": "./dist/deepgram-docs-chat.umd.js",

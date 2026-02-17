@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.1...docs-chat-v0.1.2) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** add packageManager field for pnpm/action-setup@v4 ([867433b](https://github.com/deepgram/deepgram-kapa-chat/commit/867433b2fd9988c3a13e67ef03876531c8254524))
+
 ## [0.1.1](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.0...docs-chat-v0.1.1) (2026-02-17)
 
 
