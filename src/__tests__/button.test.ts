@@ -84,7 +84,7 @@ describe('bindButton', () => {
     expect(toggleSidebar).toHaveBeenCalledTimes(1);
   });
 
-  it('strips href from the element', () => {
+  it('preserves href on the element', () => {
     const link = document.createElement('a');
     link.id = CONFIG.buttonId;
     link.setAttribute('href', '/some-page');
@@ -94,7 +94,7 @@ describe('bindButton', () => {
     resetButton();
 
     bindButton(CONFIG);
-    expect(link.hasAttribute('href')).toBe(false);
+    expect(link.getAttribute('href')).toBe('/some-page');
   });
 
   it('re-binds when element is replaced in the DOM', () => {
