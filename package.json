@@ -3,14 +3,14 @@
   "version": "0.1.1",
   "description": "Standalone AI chat widget for Deepgram docs",
   "type": "module",
-  "main": "./dist/deepgram-docs-chat.umd.cjs",
+  "main": "./dist/deepgram-docs-chat.umd.js",
   "module": "./dist/deepgram-docs-chat.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/deepgram-docs-chat.es.js",
-      "require": "./dist/deepgram-docs-chat.umd.cjs"
+      "require": "./dist/deepgram-docs-chat.umd.js"
     }
   },
   "files": [
