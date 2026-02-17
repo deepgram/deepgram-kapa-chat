@@ -6,6 +6,14 @@
 ### Bug Fixes
 
 * **ci:** use OIDC provenance for npm publish ([b5dd69e](https://github.com/deepgram/deepgram-kapa-chat/commit/b5dd69e863c8f12908a62c008fe3e958ceaf17e7))
+* **release:** reset version to 0.1.2 to retrigger 0.1.3 release ([a6908f8](https://github.com/deepgram/deepgram-kapa-chat/commit/a6908f8b69133eb54910eebbf221320a76c9c727))
+
+## [0.1.3](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.2...docs-chat-v0.1.3) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** use OIDC provenance for npm publish ([b5dd69e](https://github.com/deepgram/deepgram-kapa-chat/commit/b5dd69e863c8f12908a62c008fe3e958ceaf17e7))
 
 ## [0.1.2](https://github.com/deepgram/deepgram-kapa-chat/compare/docs-chat-v0.1.1...docs-chat-v0.1.2) (2026-02-17)
 
